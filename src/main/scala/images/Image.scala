@@ -9,8 +9,7 @@ import java.awt.Color
 
 /** Flip an image along its horizontal axis
   */
-def flipHorizontal(imageFilename: String, outputFilename: String): Unit = {
-  val image = load(imageFilename)
+def flipHorizontal(image: BufferedImage): BufferedImage = {
 
   val width = image.getWidth
   val height = image.getHeight
@@ -19,13 +18,12 @@ def flipHorizontal(imageFilename: String, outputFilename: String): Unit = {
     flipped.setRGB(width - x - 1, y, image.getRGB(x, y))
   }
 
-  save(flipped, outputFilename)
+  return flipped
 }
 
 /** Flip an image along its vertical axis
   */
-def flipVertical(imageFilename: String, outputFilename: String): Unit = {
-  val image = load(imageFilename)
+def flipVertical(image: BufferedImage): BufferedImage = {
 
   val width = image.getWidth
   val height = image.getHeight
@@ -34,7 +32,7 @@ def flipVertical(imageFilename: String, outputFilename: String): Unit = {
     flipped.setRGB(x, height - y - 1, image.getRGB(x, y))
   }
 
-  save(flipped, outputFilename)
+  return flipped
 }
 
 /** *****************************************************************************
@@ -43,8 +41,7 @@ def flipVertical(imageFilename: String, outputFilename: String): Unit = {
 
 /** Rotate an image 90 degrees clockwise
   */
-def rotateRight(imageFilename: String, outputFilename: String): Unit = {
-  val image = load(imageFilename)
+def rotateRight(image: BufferedImage): BufferedImage = {
 
   val width = image.getWidth
   val height = image.getHeight
@@ -53,13 +50,12 @@ def rotateRight(imageFilename: String, outputFilename: String): Unit = {
     rotated.setRGB(height - y - 1, x, image.getRGB(x, y))
   }
 
-  save(rotated, outputFilename)
+  return rotated
 }
 
 /** Rotate an image 90 degrees counter-clockwise
   */
-def rotateLeft(imageFilename: String, outputFilename: String): Unit = {
-  val image = load(imageFilename)
+def rotateLeft(image: BufferedImage): BufferedImage = {
 
   val width = image.getWidth
   val height = image.getHeight
@@ -68,7 +64,7 @@ def rotateLeft(imageFilename: String, outputFilename: String): Unit = {
     rotated.setRGB(y, width - x - 1, image.getRGB(x, y))
   }
 
-  save(rotated, outputFilename)
+  return rotated
 }
 
 /** *****************************************************************************
@@ -77,8 +73,7 @@ def rotateLeft(imageFilename: String, outputFilename: String): Unit = {
 
 /** Convert an image to grayscale
   */
-def grayscale(imageFilename: String, outputFilename: String): Unit = {
-  val image = load(imageFilename)
+def grayscale(image: BufferedImage): BufferedImage = {
 
   // create a new, empty image to copy pixels into
   val width = image.getWidth
@@ -97,7 +92,7 @@ def grayscale(imageFilename: String, outputFilename: String): Unit = {
       result.setRGB(column, row, newPixel.getRGB)
     }
 
-  save(result, outputFilename)
+  return result
 }
 
 /** *****************************************************************************
@@ -126,13 +121,11 @@ def load(filename: String): BufferedImage = {
     new BufferedImage(image.getWidth, image.getHeight, image.getType)
   bufferedImage.setData(image.getData)
 
-  bufferedImage
+  return bufferedImage
 }
 
 /** Given a `BufferedImage` object and path to a file, saves the image to the
   * `filename`. By default, the image format is PNG
-  * @param format
-  *   "png" by default
   * @return
   *   true if the file was successfully written
   * @throws IllegalArgumentException
@@ -140,10 +133,6 @@ def load(filename: String): BufferedImage = {
   * @throws IOException
   *   if there's an error writing the file
   */
-def save(
-    image: BufferedImage,
-    filename: String,
-    format: String = "png"
-): Boolean = {
-  ImageIO.write(image, format, new File(filename))
+def save(image: BufferedImage, filename: String): Boolean = {
+  return ImageIO.write(image, "png", new File(filename))
 }
