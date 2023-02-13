@@ -22,13 +22,34 @@ def makeBoardFromColors(c1: Color, c2: Color, c3: Color, c4: Color): Board = {
   board
 }
 
+/** Given four colors, make a board from them */
+def makeBoardFromColorsPlayer(c1: Color, c2: Color, c3: Color, c4: Color): Board = {
+  var newList = List(c1, c2, c3, c4)
+  val board = newList.mkString("")
+  board
+}
+
 /** Create a random board */
 def getRandomBoard(): Board =
   makeBoardFromColors(getRandomColor(), getRandomColor(), getRandomColor(), getRandomColor())
 
 /** Play one round of the game */
-def playRound(board: Board): (Int, Int) =
-  ???
+def playRound(board: Board): (Int, Int) = {
+
+  print("Enter your first color: ")
+  val c1 = readLine().charAt(0)
+  print("Enter your second color: ")
+  val c2 = readLine().charAt(0)
+  print("Enter your third color: ")
+  val c3 = readLine().charAt(0)
+  print("Enter your fourth color: ")
+  val c4 = readLine().charAt(0)
+
+  val playersGuess = makeBoardFromColorsPlayer(c1,c2,c3,c4)
+  scoreGuess(board, playersGuess)
+}
+
+  
 
 /** Score a guess
   *
