@@ -12,16 +12,19 @@ type Board = String
 val validColors = List('B', 'Y', 'R', 'G')
 
 /** Get a random color from the list of valid colors */
-def getRandomColor(): Color =
-  ???
+def getRandomColor(): Color = validColors(Random.nextInt(validColors.length))
 
 /** Given four colors, make a board from them */
-def makeBoardFromColors(c1: Color, c2: Color, c3: Color, c4: Color): Board =
-  ???
+def makeBoardFromColors(c1: Color, c2: Color, c3: Color, c4: Color): Board = {
+  var newList = List(c1, c2, c3, c4)
+  var shufList = Random.shuffle(newList)
+  val board = shufList.mkString("")
+  board
+}
 
 /** Create a random board */
 def getRandomBoard(): Board =
-  ???
+  makeBoardFromColors(getRandomColor(), getRandomColor(), getRandomColor(), getRandomColor())
 
 /** Play one round of the game */
 def playRound(board: Board): (Int, Int) =
