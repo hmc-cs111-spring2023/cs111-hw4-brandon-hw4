@@ -8,7 +8,7 @@ class CollatzSpec extends AnyFunSuite with Matchers:
     }
 
     test("collatz 7") {
-        collatz(6) should be(22)
+        collatz(7) should be(22)
     }
 
     test("collatz 1") {
@@ -27,5 +27,24 @@ class CollatzSpec extends AnyFunSuite with Matchers:
         collatz(101) should be(304)
     }
 
+    test("collatz count 3") {
+        collatzCount(3) should be(7)
+    }
+
+    test("collatz count 1") {
+        collatzCount(1) should be(0)
+    }
+
+    test("collatz count 101") {
+        collatzCount(101) should be(25)
+    }
+
+    test("collatz count 1111") {
+        collatzCount(1111) should be(31)
+    }
+
+    test("collatz count 267") {
+        collatzCount(267) should be(21)
+    }
 
 end CollatzSpec
