@@ -22,7 +22,7 @@ def makeBoardFromColors(c1: Color, c2: Color, c3: Color, c4: Color): Board = {
   board
 }
 
-/** Given four colors, make a board from them */
+/** Given four colors, make a board from them for player guesses*/
 def makeBoardFromColorsPlayer(c1: Color, c2: Color, c3: Color, c4: Color): Board = {
   var newList = List(c1, c2, c3, c4)
   val board = newList.mkString("")
